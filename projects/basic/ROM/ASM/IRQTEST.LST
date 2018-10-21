@@ -1,0 +1,217 @@
+      1  0000             	;
+      2  0000             	; Check RTC IRQ
+      3  0000             	;
+      4  0000             	
+      5  0000             		include ../DEVMAP.INC
+ >    1  0000             	;
+ >    2  0000             	; BLACKEYES 601 ZERO
+ >    3  0000             	; Devices mapping
+ >    4  0000             	;
+ >    5  0000             	
+ >    6  0000             	; SimpleIO module
+ >    7  0000             	
+ >    8  0000  (E6A0)		IO_L8BIT	equ	$E6A0
+ >    9  0000  (E6A1)		IO_L7HI		equ	$E6A1
+ >   10  0000  (E6A2)		IO_L7LO		equ	$E6A2
+ >   11  0000  (E6A3)		IO_L2RGB	equ	$E6A3
+ >   12  0000  (E6A4)		IO_SWKEYS	equ	$E6A4
+ >   13  0000             	
+ >   14  0000  (E6A8)		IO_TIM_CONFIG	equ	$E6A8
+ >   15  0000  (E6A8)		IO_TIM_STATUS	equ	$E6A8
+ >   16  0000  (E6A9)		IO_TIM_DIV	equ	$E6A9
+ >   17  0000             	
+ >   18  0000  (0001)		IO_TIM_RUN	equ	$1
+ >   19  0000  (0040)		IO_TIM_IEN	equ	$40
+ >   20  0000  (0080)		IO_TIM_IRQ	equ	$80
+ >   21  0000             	
+ >   22  0000             	; UART module
+ >   23  0000             	
+ >   24  0000  (E6B0)		UART_DATA	equ	$E6B0
+ >   25  0000  (E6B1)		UART_CONFIG	equ	$E6B1
+ >   26  0000  (E6B1)		UART_STATUS	equ	$E6B1
+ >   27  0000  (E6B2)		UART_PRESCALER	equ	$E6B2
+ >   28  0000             	
+ >   29  0000  (0001)		UART_RRD	equ	$1
+ >   30  0000  (0002)		UART_ROE	equ	$2
+ >   31  0000  (0004)		UART_RFE	equ	$4
+ >   32  0000  (0008)		UART_TRD	equ	$8
+ >   33  0000  (0010)		UART_RIE	equ	$10
+ >   34  0000  (0020)		UART_TIE	equ	$20
+ >   35  0000  (0040)		UART_RIQ	equ	$40
+ >   36  0000  (0080)		UART_TIQ	equ	$80
+ >   37  0000             	
+ >   38  0000  (E6B4)		PS2_DATA	equ	$E6B4
+ >   39  0000  (E6B5)		PS2_CONFIG	equ	$E6B5
+ >   40  0000  (E6B5)		PS2_STATUS	equ	$E6B5
+ >   41  0000             	
+ >   42  0000  (0001)		PS2_KRD		equ	$01
+ >   43  0000  (0002)		PS2_KPR		equ	$02
+ >   44  0000  (0020)		PS2_KEN		equ	$20
+ >   45  0000  (0040)		PS2_KIE		equ	$40
+ >   46  0000  (0080)		PS2_KIQ		equ	$80
+ >   47  0000             	
+ >   48  0000             	; SPI HOST
+ >   49  0000  (E6C0)		SPI_STATUS	equ	$E6C0
+ >   50  0000  (E6C1)		SPI_DATA	equ	$E6C1
+ >   51  0000  (E6C2)		SPI_PRESCALER	equ	$E6C2
+ >   52  0000  (E6C3)		SPI_REG		equ	$E6C3
+ >   53  0000             	
+ >   54  0000  (0080)		SPI_READY	equ	$80
+ >   55  0000             	
+ >   56  0000  (0001)		SPI_RES		equ	$01
+ >   57  0000  (0010)		SPI_PSGBC1	equ	$10
+ >   58  0000  (0020)		SPI_PSG		equ	$20
+ >   59  0000  (0080)		SPI_SD		equ	$80
+ >   60  0000             	
+ >   61  0000             	; add other SPI devices to check if SPI in use
+ >   62  0000  (00A0)		SPI_ALL		equ	(SPI_SD | SPI_PSG)
+ >   63  0000  (00B0)		SPI_INI		equ	(SPI_SD | SPI_PSG | SPI_PSGBC1)
+ >   64  0000             	
+ >   65  0000             	; PAGE SELECTOR
+ >   66  0000  (E6F0)		RAMPAGE_SEL	equ	$E6F0
+ >   67  0000  (E6F1)		RAMPAGE_CTL	equ	$E6F1
+ >   68  0000  (0001)		RAMPAGE_LOCK	equ	$01
+ >   69  0000  (0002)		SYSBOOT_LOCK	equ	$02
+ >   70  0000  (0004)		BRAM_DISABLE	equ	$04
+ >   71  0000  (0008)		BROM_DISABLE	equ	$08
+ >   72  0000             	
+ >   73  0000             	;VPU
+ >   74  0000  (E600)		VPU_HSTART	equ	$E600
+ >   75  0000  (E601)		VPU_CFG 	equ	$E601
+ >   76  0000  (E601)		VPU_STAT	equ	$E601
+ >   77  0000  (E602)		VPU_VSTART	equ	$E602
+ >   78  0000  (E604)		VPU_VEND	equ	$E604
+ >   79  0000  (E606)		VPU_VADDR	equ	$E606
+ >   80  0000  (E608)		VPU_HSIZE	equ	$E608
+ >   81  0000  (E609)		VPU_CPOS	equ	$E609
+ >   82  0000  (E60A)		VPU_CSTART	equ	$E60A
+ >   83  0000  (E60C)		VPU_CEND	equ	$E60C
+ >   84  0000             	
+ >   85  0000  (0001)		VPU_SVL		equ	$01
+ >   86  0000  (0002)		VPU_EVL		equ	$02
+ >   87  0000  (0004)		VPU_CIN		equ	$04
+ >   88  0000  (0008)		VPU_CEN		equ	$08
+ >   89  0000  (0020)		VPU_GRF		equ	$20
+ >   90  0000  (0040)		VPU_IEN		equ	$40
+ >   91  0000  (0080)		VPU_IRQ		equ	$80
+      6  0000             	
+      7  0000             		include ../BOOTMEM.INC
+ >    1  0000  (F800)		BOOTROM_BASE	equ	$F800
+ >    2  0000             	
+ >    3  0000             			section	$40
+ >    4  0040             	VIRQ		ds	2
+ >    5  0042             	VSWI		ds	2
+ >    6  0044             	VNMI		ds	2
+ >    7  0046             	VRST		ds	2
+ >    8  0048             	END_ADDR	ds	2
+ >    9  004A             			ends
+      8  0000             	
+      9  0000             		include ../BOOTROM.INC
+ >    1  0000  (F800)		F_RESET		equ	BOOTROM_BASE
+ >    2  0000  (F802)		F_UART_IN	equ	BOOTROM_BASE+2
+ >    3  0000  (F804)		F_UART_OUT	equ	BOOTROM_BASE+4
+ >    4  0000  (F806)		F_UART_PUTS	equ	BOOTROM_BASE+6
+ >    5  0000  (F808)		F_UART_PUTHEX	equ	BOOTROM_BASE+8
+     10  0000             	
+     11  0000             		org $100
+     12  0100             	
+     13  0100  0F 			sei
+     14  0101             	
+     15  0101  CE 01 D3 		ldx	#hello
+     16  0104             	;	int	F_PUTSTR
+     17  0104  BD F8 06 		jsr	F_UART_PUTS
+     18  0107             	
+     19  0107  86 01        		ldaa	#01
+     20  0109  B7 E6 A1 		staa	IO_L7HI
+     21  010C  4C 			inca
+     22  010D  B7 E6 A2 		staa	IO_L7LO
+     23  0110             	
+     24  0110  7F 00 10 		clr	$10
+     25  0113  7F 00 11 		clr	$11
+     26  0116  7F 00 12 		clr	$12
+     27  0119             	
+     28  0119             	; Setup timer
+     29  0119  86 00        		ldaa	#0
+     30  011B  B7 E6 A8 		staa	IO_TIM_CONFIG
+     31  011E             	
+     32  011E             	; Set 50 Hz interrupts
+     33  011E             	; 12MHz/50 = 240000 = $3A980
+     34  011E             	;
+     35  011E  86 03        		ldaa	#$03
+     36  0120  B7 E6 A9 		staa	IO_TIM_DIV
+     37  0123  CE A9 80 		ldx	#$A980
+     38  0126  FF E6 AA 		stx	IO_TIM_DIV+1
+     39  0129             	; Enable interrupts and start timer
+     40  0129  86 41        		ldaa	#(IO_TIM_IEN | IO_TIM_RUN)
+     41  012B  B7 E6 A8 		staa	IO_TIM_CONFIG
+     42  012E             	
+     43  012E  CE 01 9A 		ldx	#irqhandler
+     44  0131  DF 40        		stx	VIRQ
+     45  0133             	
+     46  0133  CE 01 DE 		ldx	#text1
+     47  0136             	;	int	F_PUTSTR
+     48  0136  BD F8 06 		jsr	F_UART_PUTS
+     49  0139             	
+     50  0139  0E 			cli
+     51  013A             	
+     52  013A  B6 E6 A4 	loop	ldaa	IO_SWKEYS
+     53  013D  B7 E6 A0 		staa	IO_L8BIT
+     54  0140  85 01        		bita	#1
+     55  0142  27 05   (0149)		beq	next
+     56  0144  CE 01 5E 		ldx	#but1txt
+     57  0147  20 10   (0159)		bra	print
+     58  0149  85 02        	next	bita	#2
+     59  014B  27 05   (0152)		beq	next2
+     60  014D  CE 01 72 		ldx	#but2txt
+     61  0150  20 07   (0159)		bra	print
+     62  0152  85 04        	next2	bita	#4
+     63  0154  27 E4   (013A)		beq	loop
+     64  0156  CE 01 86 		ldx	#but3txt
+     65  0159             	print
+     66  0159             	;	int	F_PUTSTR
+     67  0159  BD F8 06 		jsr	F_UART_PUTS
+     68  015C  20 DC   (013A)		bra	loop
+     69  015E             	
+     70  015E  42 75 74 74 	but1txt	db	'Button 1 pressed!', 10, 13, 0
+     71  0172  42 75 74 74 	but2txt db	'Button 2 pressed!', 10, 13, 0
+     72  0186  42 75 74 74 	but3txt db	'Button 3 pressed!', 10, 13, 0
+     73  019A             	
+     74  019A             	irqhandler proc
+     75  019A             	; Check if interrupt from timer
+     76  019A  B6 E6 A8 		ldaa	IO_TIM_STATUS
+     77  019D  85 80        		bita	#IO_TIM_IRQ
+     78  019F  27 31   (01D2)		beq	ret
+     79  01A1             	; Increase time
+     80  01A1  DE 11        		ldx	$11
+     81  01A3  08 			inx
+     82  01A4  DF 11        		stx	$11
+     83  01A6  8C 00 32 		cpx	#50
+     84  01A9  26 27   (01D2)		bne	ret
+     85  01AB  7F 00 11 		clr	$11
+     86  01AE  7F 00 12 		clr	$12
+     87  01B1  7C 00 10 		inc	$10
+     88  01B4             	
+     89  01B4  D6 10        		ldab	$10
+     90  01B6  C4 0F        		andb	#$0F
+     91  01B8  CE 01 E8 		ldx	#ledhex
+     92  01BB  3A 			abx
+     93  01BC  A6 00        		ldaa	0,x
+     94  01BE  B7 E6 A2 		staa	IO_L7LO
+     95  01C1             	
+     96  01C1  D6 10        		ldab	$10
+     97  01C3  56 			rorb
+     98  01C4  56 			rorb
+     99  01C5  56 			rorb
+    100  01C6  56 			rorb
+    101  01C7  C4 0F        		andb	#$0F
+    102  01C9  CE 01 E8 		ldx	#ledhex
+    103  01CC  3A 			abx
+    104  01CD  A6 00        		ldaa	0,x
+    105  01CF  B7 E6 A1 		staa	IO_L7HI
+    106  01D2  3B 		ret	rti
+    107  01D3             		endp
+    108  01D3             	
+    109  01D3  49 52 51 20 	hello	db	'IRQ test', 10, 13, 0
+    110  01DE  53 74 61 72 	text1	db	'Started', 10, 13, 0
+    111  01E8             	
+    112  01E8  3F 06 5B 4F 	ledhex	db	$3f, $06, $5B, $4F, $66, $6D, $7D, $07, $7F, $6F, $77, $7C, $39, $5E, $79, $71
