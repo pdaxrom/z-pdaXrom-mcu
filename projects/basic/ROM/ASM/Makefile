@@ -2,7 +2,8 @@ UNIASM = ../DEVEL/uniasm
 
 all: $(UNIASM)		\
     IRQTEST.CMD		\
-    GPIO.CMD
+    GPIO.CMD		\
+    MATRIX.CMD
 
 $(UNIASM):
 	make -C $(shell dirname $(UNIASM)) $(shell basename $(UNIASM))
