@@ -72,4 +72,4 @@ BOOTSECP.CMD: BOOTSECP.ASM BOOTROM.INC DEVMAP.INC FAT16.INC
 	$(UNIASM) BOOTSECP.ASM BOOTSECP BOOTSECP.CMD
 
 clean:
-	rm -f rom.bin *.LST *.CMD *.o *.mem bootloader ../mcu_rom.v ../mcu_ram.v ../vrom.v ../mcu_pll.v ../vpu_cache.v BOOTROM.INC *.SYS *.CMD
+	rm -f rom.bin *.LST *.CMD *.o *.mem bootloader ../mcu_rom.v ../mcu_ram.v ../vrom.v ../mcu_pll.v ../vpu_cache.v *.SYS *.CMD
