@@ -7,7 +7,7 @@
 module gpio (
 	input wire clk,
 	input wire rst,
-	input wire [3:0] AD,
+	input wire [2:0] AD,
 	input wire [7:0] DI,
 	output reg [7:0] DO,
 	input wire rw,

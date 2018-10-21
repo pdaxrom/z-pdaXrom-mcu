@@ -60,7 +60,7 @@ module mainboard(
 	begin
 		if (!keys[3]) begin
 			sys_res <= 1;
-			sys_res_delay = 4'b1000;
+			sys_res_delay <= 4'b1000;
 		end else begin
 			if (sys_res_delay == 4'b0000) begin
 				sys_res <= 0;
@@ -167,8 +167,8 @@ module mainboard(
 	gpio gpio1 (
 		.clk(sys_clk),
 		.rst(sys_res),
-		.irq(simpleio_irq),
-		.AD(AD[3:0]),
+		.irq(gpio_irq),
+		.AD(AD[2:0]),
 		.DI(DO),
 		.DO(gpiod),
 		.rw(sys_rw),
