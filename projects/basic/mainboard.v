@@ -208,6 +208,7 @@ module mainboard(
 				en_simpleio	? simpleiod:
 				en_uartio	? uartiod:
 				en_spiio 	? spiiod:
+				en_gpio		? gpiod:
 				8'b11111111;
 
 	wire cpu_irq = simpleio_irq | uartio_irq;// | gpio_irq;

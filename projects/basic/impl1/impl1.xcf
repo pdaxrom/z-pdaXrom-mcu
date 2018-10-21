@@ -20,8 +20,8 @@
 				<BScanVal>0</BScanVal>
 			</Bypass>
 			<File>C:/Users/sash/Work/z-pdaXrom-mcu/projects/basic/impl1/basic_board_impl1.jed</File>
-			<FileTime>10/21/18 17:02:55</FileTime>
-			<JedecChecksum>0x982D</JedecChecksum>
+			<FileTime>10/21/18 22:41:42</FileTime>
+			<JedecChecksum>0xEC74</JedecChecksum>
 			<Operation>FLASH Erase,Program,Verify</Operation>
 			<Option>
 				<SVFVendor>JTAG STANDARD</SVFVendor>
