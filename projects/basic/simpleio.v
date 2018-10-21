@@ -35,8 +35,8 @@ module simpleio (
 	output reg [7:0] led7lo,
 	output reg [2:0] rgb1,
 	output reg [2:0] rgb2,
-	input wire  [3:0] switches,
-	input wire  [3:0] keys
+	input wire [3:0] switches,
+	input wire [3:0] keys
 );
 	reg [23:0] timer_cnt;
 	reg [23:0] timer_prescaler;
@@ -111,4 +111,5 @@ module simpleio (
 			end
 		end
 	end
+
 endmodule

@@ -19,9 +19,9 @@
 				<BScanLen>1</BScanLen>
 				<BScanVal>0</BScanVal>
 			</Bypass>
-			<File>C:/Users/sash/Work/Z-pdaXrom-mcu/projects/basic/impl1/basic_board_impl1.jed</File>
-			<FileTime>10/21/18 14:44:57</FileTime>
-			<JedecChecksum>0x9036</JedecChecksum>
+			<File>C:/Users/sash/Work/z-pdaXrom-mcu/projects/basic/impl1/basic_board_impl1.jed</File>
+			<FileTime>10/21/18 17:02:55</FileTime>
+			<JedecChecksum>0x982D</JedecChecksum>
 			<Operation>FLASH Erase,Program,Verify</Operation>
 			<Option>
 				<SVFVendor>JTAG STANDARD</SVFVendor>
@@ -29,6 +29,7 @@
 				<PreloadLength>552</PreloadLength>
 				<IOVectorData>0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</IOVectorData>
 				<TCKFrequency>1.000000 MHz</TCKFrequency>
+				<SVFProcessor>SVF Processor</SVFProcessor>
 				<Usercode>0x00000000</Usercode>
 				<AccessMode>FLASH</AccessMode>
 			</Option>

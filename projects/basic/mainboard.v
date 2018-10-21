@@ -133,10 +133,13 @@ module mainboard(
 		.ps2dat(1'b0)
 	);
 
-	wire en_spiio = DS6; // $E6C0
+	/*
+		SPI IO
+	 */
+
+	wire en_spiio = DS6 && (AD[4] == 1'b0); // $E6C0
 	wire cs_spiio = en_spiio && sys_vma;
 	wire [7:0] spiiod;
-
 	spiio spi_impl(
 		.clk(sys_clk),
 		.rst(sys_res),
@@ -153,6 +156,26 @@ module mainboard(
 		.miso(spi_si),
 		.mss(spi_cs)
 	);
+
+	/*
+		GPIO
+	 */
+
+	wire en_gpio = DS6 && (AD[4] == 1'b1); // $E6D0
+	wire cs_gpio = en_gpio && sys_vma;
+	wire [7:0] gpiod;
+	gpio gpio1 (
+		.clk(sys_clk),
+		.rst(sys_res),
+		.irq(simpleio_irq),
+		.AD(AD[3:0]),
+		.DI(DO),
+		.DO(gpiod),
+		.rw(sys_rw),
+		.cs(cs_gpio),
+		.gpio(gpio)
+	);
+
 
 	wire en_brom = (AD[15:11] == 5'b11111);
 	wire cs_brom = en_brom && sys_vma;
