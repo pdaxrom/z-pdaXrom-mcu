@@ -35,7 +35,7 @@ REG_DISP_TEST	equ	$F00
 
 	sei
 
-	lds	#$800
+	lds	#$7ff
 
 	ldx	#hello
 ;	int	F_PUTSTR
@@ -49,16 +49,15 @@ REG_DISP_TEST	equ	$F00
 
 	bsr	disp_init
 
+	ldx	#heart
+	bsr	disp_show
+
 	jmp	F_RESET
-loop
-	bra	loop
 
 disp_init proc
 	ldaa	#$03
 	bsr	disp_intensity
 	bsr	disp_clean
-	ldx	#heart
-	bsr	disp_show
 	rts
 	endp
 
@@ -189,6 +188,17 @@ hello	db	'MATRIX test', 10, 13, 0
 ; 0 0 1 1 1 1 0 0
 ; 0 0 0 1 1 0 0 0
 
-heart	db	$38, $7C, $7E, $3F, $3F, $7E, $7C, $38
+;heart	db	$38, $7C, $7E, $3F, $3F, $7E, $7C, $38
+
+; 0 0 0 0 1 0 0 0
+; 0 0 0 0 1 0 0 0
+; 0 0 0 1 1 1 0 0
+; 0 0 1 0 1 0 1 0
+; 0 1 0 0 1 0 0 1
+; 0 0 0 0 1 0 0 0
+; 0 0 0 0 1 0 0 0
+; 0 0 0 1 0 1 0 0
+
+heart	db	$00, $08, $10, $21, $FE, $21, $10, $08
 
 ledhex	db	$3f, $06, $5B, $4F, $66, $6D, $7D, $07, $7F, $6F, $77, $7C, $39, $5E, $79, $71
