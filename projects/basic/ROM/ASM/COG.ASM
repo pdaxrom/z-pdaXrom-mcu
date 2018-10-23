@@ -41,7 +41,7 @@ PIN_SCLK	equ	$80
 	jmp	F_RESET
 
 send_byte proc
-	jsr	printhex
+;	jsr	printhex
 	ldy	#8
 loop	ldab	GPIO_DATA+3
 	andb	#$FF^PIN_SCLK
