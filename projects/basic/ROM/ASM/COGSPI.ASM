@@ -82,7 +82,7 @@ disp_init proc
 	ldaa	#(PIN_RS | PIN_RSTB)
 	staa	GPIO_DIR+3
 
-	ldaa	#70
+	ldaa	#2
 	staa	SPI_PRESCALER
 	ldaa	#SPI_SSM
 	staa	SPI_CONFIG
@@ -152,6 +152,9 @@ lcd_address proc
 lcd_test proc
 	ldaa	#0
 loop	psha
+busy1	ldab	SPI_STATUS
+	bitb	#SPI_READY
+	beq	busy1
 	adda	#$B0
 	jsr	send_cmd
 	ldaa	#$10
@@ -159,12 +162,16 @@ loop	psha
 	ldaa	#$01
 	jsr	send_cmd
 
+busy2	ldab	SPI_STATUS
+	bitb	#SPI_READY
+	beq	busy2
+
 	ldaa	#66
 loop1	psha
 	pshb
-	ldaa	#$FF
+	ldaa	#$AA
 	jsr	send_data
-	ldaa	#$FF
+	ldaa	#$AA
 	jsr	send_data
 	pulb
 	pula
