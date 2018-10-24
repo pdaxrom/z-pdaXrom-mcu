@@ -61,3 +61,6 @@ SPI_SS0		equ	$01
 
 GPIO_DATA	equ	$E6D0
 GPIO_DIR	equ	$E6D4
+
+; ROT8x8
+ROT8x8_IO	equ	$E670

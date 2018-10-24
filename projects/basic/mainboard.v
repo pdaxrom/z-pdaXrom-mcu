@@ -85,6 +85,23 @@ module mainboard(
 	wire DS7 = (AD[15:5] == 11'b11100110111); // $E6E0
 
 	/*
+		Rot8x8
+	 */
+
+	wire en_rot8x8 = DS3 && (AD[4] == 1'b1); // $E670
+	wire cs_rot8x8 = en_rot8x8 && sys_vma;
+	wire [7:0] rot8x8d;
+	rot8x8 rot8x8_1 (
+		.clk(sys_clk),
+		.rst(sys_res),
+		.AD(AD[2:0]),
+		.DI(DO),
+		.DO(rot8x8d),
+		.rw(sys_rw),
+		.cs(cs_rot8x8)
+	);
+
+	/*
 		Simple IO
 	 */
 
@@ -176,7 +193,6 @@ module mainboard(
 		.gpio(gpio)
 	);
 
-
 	wire en_brom = (AD[15:11] == 5'b11111);
 	wire cs_brom = en_brom && sys_vma;
 	wire [7:0] bromd;
@@ -209,6 +225,7 @@ module mainboard(
 				en_uartio	? uartiod:
 				en_spiio 	? spiiod:
 				en_gpio		? gpiod:
+				en_rot8x8   ? rot8x8d:
 				8'b11111111;
 
 	wire cpu_irq = simpleio_irq | uartio_irq;// | gpio_irq;
