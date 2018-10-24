@@ -4,7 +4,9 @@ all: $(UNIASM)		\
     IRQTEST.CMD		\
     GPIO.CMD		\
     MATRIX.CMD		\
-    COG.CMD
+    COG.CMD		\
+    SPI.CMD		\
+    MATRIXSPI.CMD
 
 $(UNIASM):
 	make -C $(shell dirname $(UNIASM)) $(shell basename $(UNIASM))
