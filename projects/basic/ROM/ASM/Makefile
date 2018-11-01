@@ -7,7 +7,8 @@ all: $(UNIASM)		\
     COG.CMD		\
     SPI.CMD		\
     MATRIXSPI.CMD	\
-    COGSPI.CMD
+    COGSPI.CMD		\
+    COGSPITXT.CMD
 
 $(UNIASM):
 	make -C $(shell dirname $(UNIASM)) $(shell basename $(UNIASM))
