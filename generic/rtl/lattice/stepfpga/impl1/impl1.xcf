@@ -19,8 +19,8 @@
 				<BScanLen>1</BScanLen>
 				<BScanVal>0</BScanVal>
 			</Bypass>
-			<File>C:/Users/sash/Work/z-pdaXrom-mcu/projects/rtl/lattice/stepfpga/impl1/basic_board_impl1.jed</File>
-			<FileTime>10/24/18 21:16:12</FileTime>
+			<File>C:/Users/sash/Work/z-pdaXrom-mcu/generic/rtl/lattice/stepfpga/impl1/basic_board_impl1.jed</File>
+			<FileTime>11/01/18 10:32:31</FileTime>
 			<JedecChecksum>0x25EB</JedecChecksum>
 			<Operation>FLASH Erase,Program,Verify</Operation>
 			<Option>
