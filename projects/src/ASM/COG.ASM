@@ -16,9 +16,9 @@ PIN_SCLK	equ	$80
 
 	include ../DEVMAP.INC
 
-	include ../BOOTMEM.INC
+	include ../ROM/BOOTMEM.INC
 
-	include ../BOOTROM.INC
+	include ../ROM/BOOTROM.INC
 
 	org $100
 

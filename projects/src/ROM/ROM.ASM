@@ -3,7 +3,7 @@
 ; (c) sashz <sashz@pdaXrom.org>, 2017-2018
 ;
 
-	include DEVMAP.INC
+	include ../DEVMAP.INC
 
 	include BOOTMEM.INC
 

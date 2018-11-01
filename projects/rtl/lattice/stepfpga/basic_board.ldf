@@ -3,37 +3,37 @@
     <Options/>
     <Implementation title="impl1" dir="impl1" description="impl1" synthesis="synplify" default_strategy="Strategy1">
         <Options def_top="mainboard"/>
-        <Source name="mainboard.v" type="Verilog" type_short="Verilog">
+        <Source name="../../mainboard.v" type="Verilog" type_short="Verilog">
             <Options top_module="mainboard"/>
         </Source>
-        <Source name="cpu11.vhd" type="VHDL" type_short="VHDL">
+        <Source name="../../cpu11.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
-        <Source name="simpleio.v" type="Verilog" type_short="Verilog">
+        <Source name="../../simpleio.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="uart_rx.v" type="Verilog" type_short="Verilog">
+        <Source name="../../uart_rx.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="uart_tx.v" type="Verilog" type_short="Verilog">
+        <Source name="../../uart_tx.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="uartio.v" type="Verilog" type_short="Verilog">
+        <Source name="../../uartio.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="spiio.v" type="Verilog" type_short="Verilog">
+        <Source name="../../spiio.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="mcu_ram.v" type="Verilog" type_short="Verilog">
+        <Source name="../../mcu_ram.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="mcu_rom.v" type="Verilog" type_short="Verilog">
+        <Source name="../../mcu_rom.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="gpio.v" type="Verilog" type_short="Verilog">
+        <Source name="../../gpio.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="rot8x8.v" type="Verilog" type_short="Verilog">
+        <Source name="../../rot8x8.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
         <Source name="basic_board.lpf" type="Logic Preference" type_short="LPF">
