@@ -26,7 +26,8 @@ BOOTROM.INC: ROM.ASM
 	awk '{ if ($$1 == "romvecbeg") show=1; else if ($$1 == 'romvecend') show=0; else if (show == 1 && $$2 != "") { if ($$2 == "0") cnt++; else printf "F_%s\tEQU\t$$%02X\n",toupper($$2),0xc0+cnt++; } }' $^ > $@
 
 rom.mem: ROM.ASM ../DEVMAP.INC
-	$(UNIASM) ROM.ASM ROM.LST ROM.CMD
+	cpp -P -traditional ROM.ASM > ROM.S
+	$(UNIASM) ROM.S ROM.LST ROM.CMD
 #	awk '/\yVEC.+ds/ { print $$3"\t\tEQU\t$$"$$2; }' ROM.LST >> BOOTROM.INC
 	hexdump -v -e '"%04_ax: " 16/1 "%02x " "\n"' ROM.CMD > rom.mem
 	cp -f ROM.CMD rom.bin
@@ -72,6 +73,6 @@ BOOTSECP.CMD: BOOTSECP.ASM BOOTROM.INC ../DEVMAP.INC FAT16.INC
 	$(UNIASM) BOOTSECP.ASM BOOTSECP BOOTSECP.CMD
 
 clean:
-	rm -f rom.bin *.LST *.CMD *.o *.mem bootloader *.SYS *.CMD
+	rm -f rom.bin *.LST *.CMD *.o *.mem bootloader *.SYS *.CMD *.ERR *.S
 	rm -f ../../rtl/mcu_rom* ../../rtl/mcu_ram* ../../rtl/vrom.* ../../rtl/mcu_pll.* ../../rtl/vpu_cache.*
 	rm -f ../../rtl/tb_mcu_rom* ../../rtl/tb_mcu_ram*

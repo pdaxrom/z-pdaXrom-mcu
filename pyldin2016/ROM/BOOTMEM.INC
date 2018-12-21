@@ -1,4 +1,4 @@
-BOOTROM_BASE	equ	$FF00
+BOOTROM_BASE	equ	$FE00
 
 		section	$40
 VIRQ2		ds	2
