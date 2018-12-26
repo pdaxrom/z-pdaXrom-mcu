@@ -179,7 +179,7 @@ disp_init proc
 	orab	#PIN_RSTB
 	stab	GPIO_DATA+3
 
-	ldaa	#$4c	; 01001100
+	ldaa	#$5C	; 01001100
 	jsr	send_cmd
 
 	rts

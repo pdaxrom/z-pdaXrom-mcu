@@ -88,6 +88,15 @@ cmd_sa1	ldaa	0,x
 	bne	cmd_sa1
 	bra	cmd_oka
 
+uart_in_1
+	bra	uart_in
+uart_out_1
+	bra	uart_out
+uart_puts_1
+	bra	uart_puts
+uart_outhex_1
+	bra	uart_outhex
+
 cmd_go
 	bsr	get_word
 	jmp	0,x
@@ -100,15 +109,6 @@ get_block_addr proc
 	pulx
 	rts
 	endp
-
-uart_in_1
-	bra	uart_in
-uart_out_1
-	bra	uart_out
-uart_puts_1
-	bra	uart_puts
-uart_outhex_1
-	bra	uart_outhex
 
 ;; UART IN/OUT
 
