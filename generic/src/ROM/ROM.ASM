@@ -24,6 +24,14 @@ reset
 
 	lds	#$ff
 
+#ifdef HD6303Y
+; Setup page port (P6)
+	ldaa	#0
+	staa	REG_PORT6
+	ldaa	#$FF
+	staa	REG_DDRP6
+#endif
+
 ; setup stubs
 
 #ifdef HD6303
