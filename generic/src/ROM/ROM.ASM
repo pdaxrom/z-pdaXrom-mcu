@@ -7,6 +7,9 @@
 
 #ifdef HD6303Y
 #define HD6303
+
+MEMPAGE_HI	equ	$10
+
 #endif
 
 	include BOOTMEM.INC
@@ -26,7 +29,8 @@ reset
 
 #ifdef HD6303Y
 ; Setup page port (P6)
-	ldaa	#0
+	ldaa	REG_PORT6	; MEMPAGE Port initialization
+	anda	#MEMPAGE_FMASK|MEMPAGE_HI
 	staa	REG_PORT6
 	ldaa	#$FF
 	staa	REG_DDRP6
